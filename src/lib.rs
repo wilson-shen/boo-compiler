@@ -1,14 +1,36 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+pub mod parser;
+pub mod codegen;
+
+pub use parser::parse;
+pub use codegen::generate;
+
+pub struct CompileOptions {
+    pub filename: Option<String>,
+    pub generate: GenerateTarget, // Swift / Kotlin / Both
+    pub dev: bool,
 }
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+pub enum GenerateTarget {
+    Swift,
+    Kotlin,
+    Both,
+}
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+pub struct CompileResult {
+    pub code: String,
+    pub warnings: Vec<String>,
+}
+
+pub fn compile(source: &str, options: CompileOptions) -> CompileResult {
+    let ast = parser::parse(source);
+
+    // Later: transform(ast)
+
+    let code = codegen::generate(&ast, &options);
+
+    CompileResult {
+        code,
+        warnings: vec![], // later: collect warnings from parser/transform/codegen
     }
 }
+
