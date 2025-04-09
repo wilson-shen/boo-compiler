@@ -84,4 +84,3 @@ fn parse_tag_contents(contents: &str) -> (String, Vec<(String, String)>, bool) {
 
     (tag, attributes, self_closing)
 }
-

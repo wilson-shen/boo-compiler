@@ -36,7 +36,8 @@ pub fn preprocess_file(source: &str) -> PreprocessedSource {
 }
 
 trait Pipe: Sized {
-    fn pipe<F: FnOnce(Self) -> R, R>(self, f: F) -> R { f(self) }
+    fn pipe<F: FnOnce(Self) -> R, R>(self, f: F) -> R {
+        f(self)
+    }
 }
 impl<T> Pipe for T {}
-

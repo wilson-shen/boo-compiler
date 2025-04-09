@@ -31,4 +31,3 @@ pub fn compile(source: &str, options: CompileOptions) -> CompileResult {
         warnings: vec![], // TODO: collect real warnings
     }
 }
-
