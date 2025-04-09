@@ -77,7 +77,7 @@ fn parse_tag_contents(contents: &str) -> (String, Vec<(String, String)>, bool) {
 
     let mut attributes = vec![];
 
-    let attr_re = Regex::new(r#"([a-zA-Z_:][\w:-]*)\s*=\s*"([^"]*)""#).unwrap();
+    let attr_re = Regex::new(r#"([a-zA-Z_][\w-]*)\s*=\s*"([^"]*)""#).unwrap();
     for cap in attr_re.captures_iter(attr_str) {
         attributes.push((cap[1].to_string(), cap[2].to_string()));
     }
